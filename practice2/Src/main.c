@@ -20,7 +20,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "timeManagger.h"
+
+#include "TimeManager.h"
 
 #define NUM_LEDS 3
 #define DELAY_LED2 100 // El valor debe asarse en milisegundo
