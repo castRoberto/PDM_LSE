@@ -95,9 +95,9 @@ int main(void) {
 	for (int8_t i = 0; i < NUM_LEDS; i++) {
 
 		/* Initialize BSP Led for LED2 */
-		BSP_LED_Init(leds[i].led);
+		BSP_LED_Init (leds[i].led);
 
-		TM_delayInit(&(leds[i].delay), leds[i].defoultWait);
+		TM_delayInit (&(leds[i].delay), leds[i].defoultWait);
 
 	}
 
@@ -106,9 +106,9 @@ int main(void) {
 
 		for (int8_t i = 0; i < NUM_LEDS; i++) {
 
-			if (TM_delayRead(&(leds[i].delay))) {
+			if (TM_delayRead (&(leds[i].delay))) {
 
-				BSP_LED_Toggle(leds[i].led);
+				BSP_LED_Toggle (leds[i].led);
 
 			}
 
