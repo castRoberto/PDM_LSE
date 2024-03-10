@@ -21,15 +21,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-#include "TimeManager.h"
-
-#define NUM_LEDS 3
-#define DELAY_LED2 100 // El valor debe asarse en milisegundo
-
-#define PERIOD_1000MS 1000
-#define PERIOD_200MS  200
-#define PERIOD_100MS  100
-
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
   */
@@ -57,7 +48,7 @@ static void Error_Handler(void);
   * @param  None
   * @retval None
   */
-int main(void) {
+int main (void) {
   /* STM32F4xx HAL library initialization:
        - Configure the Flash prefetch
        - Systick timer is configured by default as source of time base, but user 
@@ -68,51 +59,27 @@ int main(void) {
        - Set NVIC Group Priority to 4
        - Low Level Initialization
      */
-	HAL_Init();
+	HAL_Init ();
 
 	/* Configure the system clock to 180 MHz */
-	SystemClock_Config();
+	SystemClock_Config ();
 
 
-	typedef struct {
+	ledData_t ledsData[] = {
 
-		Led_TypeDef led;
-		delay_t delay;
-		tick_t defoultWait;
-
-	} ledData_t;
-
-
-	ledData_t leds[NUM_LEDS] = {
-
-			{.led = LED1, .delay = {}, .defoultWait = PERIOD_1000MS},
-			{.led = LED2, .delay = {}, .defoultWait = PERIOD_200MS},
-			{.led = LED3, .delay = {}, .defoultWait = PERIOD_100MS}
+			{.led = LED1, .delay = { }, .defoultWait = PERIOD_1000MS},
+			{.led = LED2, .delay = { }, .defoultWait = PERIOD_200MS},
+			{.led = LED3, .delay = { }, .defoultWait = PERIOD_100MS}
 
 	};
 
-
-	for (int8_t i = 0; i < NUM_LEDS; i++) {
-
-		/* Initialize BSP Led for LED2 */
-		BSP_LED_Init (leds[i].led);
-
-		TM_delayInit (&(leds[i].delay), leds[i].defoultWait);
-
-	}
+	LM_ledsDataInit (ledsData);
 
 	/* Infinite loop */
 	while (1) {
 
-		for (int8_t i = 0; i < NUM_LEDS; i++) {
+		LM_manageLedStates (ledsData);
 
-			if (TM_delayRead (&(leds[i].delay))) {
-
-				BSP_LED_Toggle (leds[i].led);
-
-			}
-
-		}
 	}
 }
 
@@ -138,8 +105,8 @@ int main(void) {
   * @param  None
   * @retval None
   */
-static void SystemClock_Config(void)
-{
+static void SystemClock_Config(void) {
+
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_OscInitTypeDef RCC_OscInitStruct;
 

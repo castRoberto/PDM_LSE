@@ -96,6 +96,7 @@
 "./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usart.o"
 "./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o"
 "./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_utils.o"
+"./Src/LedManager.o"
+"./Src/TimeManager.o"
 "./Src/main.o"
-"./Src/timeManagger.o"
 "./Startup/startup_stm32f429xx.o"

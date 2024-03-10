@@ -1,3 +1,0 @@
-../Src/timeManagger.c:11:6:TM_delayInit	1
-../Src/timeManagger.c:21:8:TM_delayRead	3
-../Src/timeManagger.c:49:6:TM_delayWrite	1

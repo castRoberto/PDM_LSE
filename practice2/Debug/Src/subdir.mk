@@ -5,16 +5,19 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Src/main.c \
-../Src/timeManagger.c 
+../Src/LedManager.c \
+../Src/TimeManager.c \
+../Src/main.c 
 
 OBJS += \
-./Src/main.o \
-./Src/timeManagger.o 
+./Src/LedManager.o \
+./Src/TimeManager.o \
+./Src/main.o 
 
 C_DEPS += \
-./Src/main.d \
-./Src/timeManagger.d 
+./Src/LedManager.d \
+./Src/TimeManager.d \
+./Src/main.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +27,7 @@ Src/%.o Src/%.su Src/%.cyclo: ../Src/%.c Src/subdir.mk
 clean: clean-Src
 
 clean-Src:
-	-$(RM) ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/timeManagger.cyclo ./Src/timeManagger.d ./Src/timeManagger.o ./Src/timeManagger.su
+	-$(RM) ./Src/LedManager.cyclo ./Src/LedManager.d ./Src/LedManager.o ./Src/LedManager.su ./Src/TimeManager.cyclo ./Src/TimeManager.d ./Src/TimeManager.o ./Src/TimeManager.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su
 
 .PHONY: clean-Src
 

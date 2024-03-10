@@ -24,7 +24,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-
+#include <stddef.h>
 #include "stm32f4xx_hal.h"
 
 // Defining data types
@@ -32,6 +32,10 @@ typedef uint32_t tick_t;
 
 typedef bool bool_t;
 
+/**
+ * structure to contain information for delay
+ * management
+ */
 typedef struct{
 
    tick_t startTime;
