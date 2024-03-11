@@ -22,11 +22,15 @@
 
 void TM_delayInit( delay_t * delay, tick_t duration ) {
 
-	*delay = (delay_t) {
-		.startTime = 0,
-		.duration = duration,
-		.running = false
-	};
+	if ((delay != NULL) && (delay->duration >= 0)) {
+
+		*delay = (delay_t) {
+			.startTime = 0,
+			.duration = duration,
+			.running = false
+		};
+
+	}
 
 }
 
@@ -64,7 +68,7 @@ bool_t TM_delayRead( delay_t * delay ) {
 
 void TM_delayWrite( delay_t * delay, tick_t duration ) {
 
-	if (delay->duration >= 0) {
+	if ((delay != NULL) && (delay->duration >= 0)) {
 
 		delay->duration = duration;
 

@@ -732,3 +732,18 @@ org.eclipse.jface.text.BadLocationException
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:588)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1459)
 	at org.eclipse.equinox.launcher.Main.main(Main.java:1432)
+!SESSION 2024-03-11 10:25:15.580 -----------------------------------------------
+eclipse.buildId=Version 1.14.0
+java.version=17.0.8.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 4 4 2024-03-11 10:25:22.341
+!MESSAGE CubeMX plugin appears to be active, Log4j initialization might be too late.
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2024-03-11 10:25:22.342
+!MESSAGE Log4j2 initialized with config file /home/operador/STM32CubeIDE/PDM_LSE/.metadata/.log4j2.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2024-03-11 10:25:28.336
+!MESSAGE Started RMI Server, listening on port 41337
