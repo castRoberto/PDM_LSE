@@ -3571,7 +3571,7 @@ void TM_delayInit( delay_t * delay, tick_t duration ) {
  8001778:	6078      	str	r0, [r7, #4]
  800177a:	6039      	str	r1, [r7, #0]
 
-	if ((delay != NULL) && (delay->duration >= 0)) {
+	if (delay != NULL) {
  800177c:	687b      	ldr	r3, [r7, #4]
  800177e:	2b00      	cmp	r3, #0
  8001780:	d008      	beq.n	8001794 <TM_delayInit+0x22>

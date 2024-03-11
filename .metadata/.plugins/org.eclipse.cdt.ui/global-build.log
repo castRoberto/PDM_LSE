@@ -1,4 +1,4 @@
-10:31:24 **** Build of configuration Debug for project practice2 ****
+10:43:06 **** Build of configuration Debug for project practice2 ****
 make -j8 all 
 arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/CMSIS/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/Core/Inc" -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f429xx.d" -MT"Startup/startup_stm32f429xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f429xx.o" "../Startup/startup_stm32f429xx.s"
 arm-none-eabi-gcc "../Src/LedManager.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/CMSIS/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice2/Drivers/Core/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/LedManager.d" -MT"Src/LedManager.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/LedManager.o"
@@ -113,7 +113,7 @@ Finished building: default.size.stdout
  
 Finished building: practice2.list
  
-10:31:35 **** Incremental Build of configuration Debug for project practice2 ****
+10:43:12 **** Incremental Build of configuration Debug for project practice2 ****
 make -j8 all 
 arm-none-eabi-size  practice2.elf 
    text	   data	    bss	    dec	    hex	filename

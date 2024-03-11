@@ -22,11 +22,11 @@
 
 void TM_delayInit( delay_t * delay, tick_t duration ) {
 
-	if ((delay != NULL) && (delay->duration >= 0)) {
+	if (delay != NULL) {
 
 		*delay = (delay_t) {
 			.startTime = 0,
-			.duration = duration,
+			.duration = (delay->duration >= 0)? duration : 0,
 			.running = false
 		};
 
