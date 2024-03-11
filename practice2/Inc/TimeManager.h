@@ -26,6 +26,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include "stm32f4xx_hal.h"
+#include "ConfigurationConsts.h"
 
 // Defining data types
 typedef uint32_t tick_t;

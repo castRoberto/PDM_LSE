@@ -26,7 +26,7 @@ void TM_delayInit( delay_t * delay, tick_t duration ) {
 
 		*delay = (delay_t) {
 			.startTime = 0,
-			.duration = (delay->duration >= 0)? duration : 0,
+			.duration = (delay->duration >= 0)? duration : DEFAULT_PERIOD_0MS,
 			.running = false
 		};
 

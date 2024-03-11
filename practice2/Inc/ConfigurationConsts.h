@@ -38,5 +38,7 @@
 #define PERIOD_200MS  100
 #define PERIOD_100MS  50
 
+#define DEFAULT_PERIOD_0MS 0
+
 
 #endif /* __CONFIGURATION_CONSTS__ */
