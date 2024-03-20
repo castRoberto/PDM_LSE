@@ -1,4 +1,4 @@
-# [PDM] Practice 2, Modularization
+# [PDM] Practice 3, Modularization
 
 Practice related to the modularization of functions that control non-blocking delays.
 
