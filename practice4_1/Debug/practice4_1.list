@@ -31,23 +31,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  13 .comment      00000043  00000000  00000000  0002004c  2**0
                   CONTENTS, READONLY
- 14 .debug_info   00004c20  00000000  00000000  0002008f  2**0
+ 14 .debug_info   00004bfa  00000000  00000000  0002008f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_abbrev 00001326  00000000  00000000  00024caf  2**0
+ 15 .debug_abbrev 00001328  00000000  00000000  00024c89  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_aranges 00000530  00000000  00000000  00025fd8  2**3
+ 16 .debug_aranges 00000530  00000000  00000000  00025fb8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_rnglists 000003b9  00000000  00000000  00026508  2**0
+ 17 .debug_rnglists 000003b9  00000000  00000000  000264e8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_macro  00024db8  00000000  00000000  000268c1  2**0
+ 18 .debug_macro  00024db8  00000000  00000000  000268a1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_line   000078ed  00000000  00000000  0004b679  2**0
+ 19 .debug_line   000078ed  00000000  00000000  0004b659  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_str    000e0d72  00000000  00000000  00052f66  2**0
+ 20 .debug_str    000e0d72  00000000  00000000  00052f46  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_frame  00001254  00000000  00000000  00133cd8  2**2
+ 21 .debug_frame  00001254  00000000  00000000  00133cb8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 00000057  00000000  00000000  00134f2c  2**0
+ 22 .debug_line_str 00000057  00000000  00000000  00134f0c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -3825,11 +3825,11 @@ int main (void) {
  80018aa:	e7fc      	b.n	80018a6 <main+0x1e>
 
 080018ac <debounceFsmInit>:
-
-	}
-}
-
-
+ *
+ * @param void.
+ *
+ * @return void.
+ */
 static void debounceFsmInit (void) {
  80018ac:	b580      	push	{r7, lr}
  80018ae:	af00      	add	r7, sp, #0
@@ -3852,13 +3852,17 @@ static void debounceFsmInit (void) {
  80018c8:	2000003c 	.word	0x2000003c
 
 080018cc <debounceFsmUpdate>:
-
-static void debounceFsmUpdate () {
+ *
+ * @param None
+ *
+ * @return None
+ */
+static void debounceFsmUpdate (void) {
  80018cc:	b580      	push	{r7, lr}
  80018ce:	b082      	sub	sp, #8
  80018d0:	af00      	add	r7, sp, #0
 
-	GPIO_PinState buttonState = BSP_PB_GetState (BUTTON_USER);
+	uint8_t buttonState = BSP_PB_GetState (BUTTON_USER);
  80018d2:	2000      	movs	r0, #0
  80018d4:	f7fe ff40 	bl	8000758 <BSP_PB_GetState>
  80018d8:	4603      	mov	r3, r0
@@ -4001,8 +4005,11 @@ static void debounceFsmUpdate () {
  800198c:	2000003c 	.word	0x2000003c
 
 08001990 <buttonPressed>:
-
-
+ *
+ * @param None
+ *
+ * @return None
+ */
 static void buttonPressed (void) {
  8001990:	b580      	push	{r7, lr}
  8001992:	af00      	add	r7, sp, #0
@@ -4016,7 +4023,11 @@ static void buttonPressed (void) {
  800199c:	bd80      	pop	{r7, pc}
 
 0800199e <buttonReleased>:
-
+ *
+ * @param None
+ *
+ * @return None
+ */
 static void buttonReleased (void) {
  800199e:	b580      	push	{r7, lr}
  80019a0:	af00      	add	r7, sp, #0

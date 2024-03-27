@@ -44,6 +44,7 @@ typedef enum {
 UART_HandleTypeDef UartHandle;
 
 
+/* Machine status and non-blocking return structure */
 static delay_t debounceDelay;
 static DebounceState_t currentState;
 
@@ -121,7 +122,7 @@ static void debounceFsmInit (void) {
  */
 static void debounceFsmUpdate (void) {
 
-	GPIO_PinState buttonState = BSP_PB_GetState (BUTTON_USER);
+	uint8_t buttonState = BSP_PB_GetState (BUTTON_USER);
 
 	switch (currentState) {
 
