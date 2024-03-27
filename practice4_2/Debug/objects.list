@@ -1,3 +1,4 @@
+"./Drivers/API/Src/API_debounce.o"
 "./Drivers/API/Src/API_delay.o"
 "./Drivers/BSP/STM32F4xx_Nucleo_144/stm32f4xx_nucleo_144.o"
 "./Drivers/CMSIS/system_stm32f4xx.o"

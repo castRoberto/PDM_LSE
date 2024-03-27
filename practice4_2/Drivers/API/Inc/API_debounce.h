@@ -35,9 +35,9 @@
 /**
  * Prototype of public functions of the package
  */
-bool_t readKey (void);
-void debounceFsmInit (void);
-void debounceFsmUpdate (void);
+bool_t API_readKey (void);
+void API_debounceFsmInit (void);
+void API_debounceFsmUpdate (void);
 
 
 #endif /* __API_DEBOUNCE_H__ */

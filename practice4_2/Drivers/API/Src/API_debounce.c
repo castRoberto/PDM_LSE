@@ -51,7 +51,7 @@ static bool_t buttonPressed = false;
  *
  * @return returnValue : bool_t; Button was pressed.
  */
-bool_t readKey (void) {
+bool_t API_readKey (void) {
 
 	bool_t returnValue = buttonPressed;
 
@@ -72,7 +72,7 @@ bool_t readKey (void) {
  *
  * @return void.
  */
-void debounceFsmInit (void) {
+void API_debounceFsmInit (void) {
 
 	currentState = BUTTON_UP;
 	/* Initialize API delay */
@@ -91,7 +91,7 @@ void debounceFsmInit (void) {
  *
  * @return None
  */
-static void debounceFsmUpdate (void) {
+void API_debounceFsmUpdate (void) {
 
 	uint8_t buttonState = BSP_PB_GetState (BUTTON_USER);
 
@@ -138,7 +138,7 @@ static void debounceFsmUpdate (void) {
 
 		default: {
 
-			debounceFsmInit ();
+			API_debounceFsmInit ();
 			break;
 
 		}

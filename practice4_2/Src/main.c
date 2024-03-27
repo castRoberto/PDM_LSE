@@ -28,6 +28,8 @@ UART_HandleTypeDef UartHandle;
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config (void);
 static void Error_Handler (void);
+
+static tick_t calculateFrequency (delay_t* delay);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -42,6 +44,11 @@ int main (void) {
 	/* Configure the system clock to 180 MHz */
 	SystemClock_Config ();
 
+	delay_t delayLed = {};
+
+	/* Initializes the LED1 delay structure */
+	API_delayInit(&delayLed, FREQUENCY_05HZ);
+
 	/* Initialize BSP Led for LED1 */
 	BSP_LED_Init (LED1);
 
@@ -49,15 +56,59 @@ int main (void) {
 	BSP_PB_Init (BUTTON_USER, BUTTON_MODE_GPIO);
 
 	/* Initialize the state machine */
-	debounceFsmInit ();
+	API_debounceFsmInit ();
 
 	/* Infinite loop */
 	while (1) {
 
+		API_debounceFsmUpdate ();
+
+		if (API_readKey ()) {
+
+			tick_t newFrequency = calculateFrequency (&delayLed);
+
+			API_delayWrite (&delayLed, newFrequency);
+
+		}
+
+		if (API_delayRead (&delayLed)) {
+
+			BSP_LED_Toggle (LED1);
+
+		}
 
 	}
 }
 
+
+static tick_t calculateFrequency (delay_t* delay) {
+
+	tick_t newFrequency = 0;
+
+	uint32_t frequencies[NUM_FREQUENCIES] = {
+
+			FREQUENCY_01HZ,
+			FREQUENCY_05HZ
+
+	};
+
+	for (int8_t index = 0; index < NUM_FREQUENCIES; index++) {
+
+		if (frequencies[index] == delay->duration) {
+
+			int8_t newIndex = (++index) % NUM_FREQUENCIES;
+
+			newFrequency = frequencies [newIndex];
+
+			break;
+
+		}
+
+	}
+
+	return newFrequency;
+
+}
 
 /**
   * @brief  System Clock Configuration
