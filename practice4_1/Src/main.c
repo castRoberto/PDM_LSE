@@ -34,12 +34,15 @@ typedef enum {
 } DebounceState_t;
 
 
-/* Private define ------------------------------------------------------------*/
+/*
+ * Rebound stabilization time
+ */
 #define DEBOUNCE_STABILIZATION_TIME_40MS 40
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
+
+
 /* UART handler declaration */
 UART_HandleTypeDef UartHandle;
+
 
 static delay_t debounceDelay;
 static DebounceState_t currentState;
@@ -50,7 +53,7 @@ static void SystemClock_Config (void);
 static void Error_Handler (void);
 
 static void debounceFsmInit (void);
-static void debounceFsmUpdate();
+static void debounceFsmUpdate (void);
 
 static void buttonPressed (void);
 static void buttonReleased (void);
@@ -88,6 +91,16 @@ int main (void) {
 }
 
 
+/**
+ * @brief Initialize the state machine
+ *
+ * Sets the initial state of the state machine and its
+ * non-blocking delay structure.
+ *
+ * @param void.
+ *
+ * @return void.
+ */
 static void debounceFsmInit (void) {
 
 	currentState = BUTTON_UP;
@@ -96,7 +109,18 @@ static void debounceFsmInit (void) {
 
 }
 
-static void debounceFsmUpdate () {
+
+/**
+ * @brief Update the state machine
+ *
+ * Function to update the states and outputs of the
+ * state machine
+ *
+ * @param void.
+ *
+ * @return void.
+ */
+static void debounceFsmUpdate (void) {
 
 	GPIO_PinState buttonState = BSP_PB_GetState (BUTTON_USER);
 
@@ -155,12 +179,31 @@ static void debounceFsmUpdate () {
 }
 
 
+/**
+ * @brief Activate output
+ *
+ * Activate the output of the state machine
+ *
+ * @param void.
+ *
+ * @return void.
+ */
 static void buttonPressed (void) {
 
     BSP_LED_On (LED1);
 
 }
 
+
+/**
+ * @brief Disable output
+ *
+ * Disable the output of the state machine
+ *
+ * @param void.
+ *
+ * @return void.
+ */
 static void buttonReleased (void) {
 
     BSP_LED_Off (LED1);
