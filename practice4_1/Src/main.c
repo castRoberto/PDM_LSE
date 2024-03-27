@@ -48,7 +48,6 @@ static delay_t debounceDelay;
 static DebounceState_t currentState;
 
 /* Private function prototypes -----------------------------------------------*/
-
 static void SystemClock_Config (void);
 static void Error_Handler (void);
 
@@ -116,9 +115,9 @@ static void debounceFsmInit (void) {
  * Function to update the states and outputs of the
  * state machine
  *
- * @param void.
+ * @param None
  *
- * @return void.
+ * @return None
  */
 static void debounceFsmUpdate (void) {
 
@@ -184,9 +183,9 @@ static void debounceFsmUpdate (void) {
  *
  * Activate the output of the state machine
  *
- * @param void.
+ * @param None
  *
- * @return void.
+ * @return None
  */
 static void buttonPressed (void) {
 
@@ -200,9 +199,9 @@ static void buttonPressed (void) {
  *
  * Disable the output of the state machine
  *
- * @param void.
+ * @param None
  *
- * @return void.
+ * @return None
  */
 static void buttonReleased (void) {
 
