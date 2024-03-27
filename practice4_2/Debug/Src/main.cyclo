@@ -1,4 +1,4 @@
 ../Src/main.c:43:5:main	3
-../Src/main.c:96:15:calculateFrequency	3
-../Src/main.c:146:13:SystemClock_Config	4
-../Src/main.c:198:13:Error_Handler	1
+../Src/main.c:96:15:calculateFrequency	4
+../Src/main.c:151:13:SystemClock_Config	4
+../Src/main.c:203:13:Error_Handler	1

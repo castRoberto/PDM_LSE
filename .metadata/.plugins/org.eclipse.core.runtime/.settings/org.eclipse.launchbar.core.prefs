@@ -1,7 +1,7 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=linux
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice3,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice4_2
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice2,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice3,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice4_1,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice4_2
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practica1\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practica1\ Debug/activeLaunchTarget=null\:---

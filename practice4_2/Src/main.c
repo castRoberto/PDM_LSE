@@ -95,24 +95,28 @@ int main (void) {
  */
 static tick_t calculateFrequency (delay_t* delay) {
 
-	tick_t newFrequency = 0;
+	tick_t newFrequency = DEFAULT_PERIOD_10MS;
 
-	uint32_t frequencies[NUM_FREQUENCIES] = {
+	if (delay != NULL) {
 
-			FREQUENCY_01HZ,
-			FREQUENCY_05HZ
+		uint32_t frequencies[NUM_FREQUENCIES] = {
 
-	};
+				FREQUENCY_01HZ,
+				FREQUENCY_05HZ
 
-	for (int8_t index = 0; index < NUM_FREQUENCIES; index++) {
+		};
 
-		if (frequencies[index] == delay->duration) {
+		for (int8_t index = 0; index < NUM_FREQUENCIES; index++) {
 
-			int8_t newIndex = (++index) % NUM_FREQUENCIES;
+			if (frequencies[index] == delay->duration) {
 
-			newFrequency = frequencies [newIndex];
+				int8_t newIndex = (++index) % NUM_FREQUENCIES;
 
-			break;
+				newFrequency = frequencies [newIndex];
+
+				break;
+
+			}
 
 		}
 
@@ -121,6 +125,7 @@ static tick_t calculateFrequency (delay_t* delay) {
 	return newFrequency;
 
 }
+
 
 /**
   * @brief  System Clock Configuration
