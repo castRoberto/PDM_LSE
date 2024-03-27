@@ -39,7 +39,39 @@ typedef enum {
  */
 static delay_t debounceDelay = {};
 static DebounceState_t currentState;
-static bool_t buttonPressed = false;
+static bool_t keyPressed = false;
+
+
+/**
+ * @brief Activate output
+ *
+ * Activate the output of the state machine
+ *
+ * @param None
+ *
+ * @return None
+ */
+static void buttonPressed (void) {
+
+    keyPressed = true;
+
+}
+
+
+/**
+ * @brief Disable output
+ *
+ * Disable the output of the state machine
+ *
+ * @param None
+ *
+ * @return None
+ */
+static void buttonReleased (void) {
+
+    keyPressed = false;
+
+}
 
 
 /**
@@ -53,9 +85,9 @@ static bool_t buttonPressed = false;
  */
 bool_t API_debounceReadKey (void) {
 
-	bool_t returnValue = buttonPressed;
+	bool_t returnValue = keyPressed;
 
-	if (buttonPressed) { buttonPressed = false; }
+	if (keyPressed) { buttonReleased (); }
 
 	return returnValue;
 
@@ -110,7 +142,7 @@ void API_debounceFsmUpdate (void) {
 
 				currentState = buttonState? BUTTON_DOWN : BUTTON_UP;
 
-				if (currentState == BUTTON_DOWN) { buttonPressed = true; }
+				if (currentState == BUTTON_DOWN) { buttonPressed (); }
 
 			}
 
