@@ -1,10 +1,10 @@
-# [PDM] Practice 3, Modularization
+# [PDM] Practice 4.1, Software debounce
 
-Practice related to the modularization of functions that control non-blocking delays.
+Practice related to the implementation of a finite state machine to control bounces due to the mechanics of a push button.
 
 ## Author
 Roberto Enrique Castro Beltran
 
 ## Description
 
-A package called API is created that contains the header and implementation files for the API_delay module. Calls are redirected to this new module. The concept of encapsulation is also used by limiting the scope with the static modifier of a new function called isTimeOut.
+The functions debounceFsmInit, debounceFsmUpdate, buttonPressed, buttonReleased are created to control the states of the FSM and its corresponding output, for this the machine is modeled with four possible states (BUTTON_UP, BUTTON_FALLING, BUTTON_DOWN, BUTTON_RAISING)
