@@ -1,0 +1,2 @@
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_msp.c:51:6:HAL_UART_MspInit	1
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_msp.c:90:6:HAL_UART_MspDeInit	1
