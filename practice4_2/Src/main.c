@@ -63,7 +63,7 @@ int main (void) {
 
 		API_debounceFsmUpdate ();
 
-		if (API_readKey ()) {
+		if (API_debounceReadKey ()) {
 
 			tick_t newFrequency = calculateFrequency (&delayLed);
 
@@ -81,6 +81,15 @@ int main (void) {
 }
 
 
+/**
+ * @brief Calculate new frequency
+ *
+ * Switch between different oscillation frequencies
+ *
+ * @param delay: LED delay structure
+ *
+ * @return newFrequency: New oscillation frequency
+ */
 static tick_t calculateFrequency (delay_t* delay) {
 
 	tick_t newFrequency = 0;

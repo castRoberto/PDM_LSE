@@ -51,7 +51,7 @@ static bool_t buttonPressed = false;
  *
  * @return returnValue : bool_t; Button was pressed.
  */
-bool_t API_readKey (void) {
+bool_t API_debounceReadKey (void) {
 
 	bool_t returnValue = buttonPressed;
 
@@ -106,11 +106,11 @@ void API_debounceFsmUpdate (void) {
 
 		case BUTTON_FALLING: {
 
-			buttonPressed = true;
-
 			if (API_delayRead (&debounceDelay)) {
 
 				currentState = buttonState? BUTTON_DOWN : BUTTON_UP;
+
+				if (currentState == BUTTON_DOWN) { buttonPressed = true; }
 
 			}
 
