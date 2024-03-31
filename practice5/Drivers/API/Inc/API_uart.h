@@ -29,8 +29,6 @@
 #include "API_DataTypes.h"
 
 
-#define MAX_WAIT_UART_TX 500
-
 /**
  * Uart constants definitions
  */
@@ -39,6 +37,8 @@
 #define UART_WORD_LEN UART_WORDLENGTH_8B
 #define UART_STOP_BITS UART_STOPBITS_1
 #define UART_PARITY UART_PARITY_NONE
+
+#define MAX_WAIT_UART_TX 500
 
 
 /**

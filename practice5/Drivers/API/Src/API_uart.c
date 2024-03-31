@@ -240,40 +240,44 @@ static void getUartInstance (uint8_t* buff) {
  */
 static void createInitMessage (uint8_t* buffer) {
 
-	uint8_t tmpMsg [LEN_TMP_MSG] = { CLEAN_CHARACTER };
+	if (buffer != NULL) {
 
-	memset(buffer, CLEAN_CHARACTER, LEN_INIT_MSG);
+		uint8_t tmpMsg [LEN_TMP_MSG] = { CLEAN_CHARACTER };
 
-	/* Header init msg */
-	strcat ((char*)buffer, (str_cast)INIT_HEADER_MSG);
+		memset(buffer, CLEAN_CHARACTER, LEN_INIT_MSG);
 
-	/* Instance uart data */
-	strcat ((char*)buffer, (str_cast)INIT_INSTANCE_MSG);
-	getUartInstance (tmpMsg);
-	strcat ((char*)buffer, (str_cast)tmpMsg);
+		/* Header init msg */
+		strcat ((char*)buffer, (str_cast)INIT_HEADER_MSG);
 
-	/* BaudRate uart data */
-	strcat ((char*)buffer, (str_cast)INIT_BAUD_MSG);
-	itoa (huart3.Init.BaudRate, (char*)tmpMsg, NUMERIC_BASE);
-	strcat ((char*)buffer, (str_cast)tmpMsg);
+		/* Instance uart data */
+		strcat ((char*)buffer, (str_cast)INIT_INSTANCE_MSG);
+		getUartInstance (tmpMsg);
+		strcat ((char*)buffer, (str_cast)tmpMsg);
 
-	/* WordLen uart data */
-	strcat ((char*)buffer, (str_cast)INIT_WORD_LEN_MSG);
-	getWordLen(tmpMsg);
-	strcat ((char*)buffer, (str_cast)tmpMsg);
+		/* BaudRate uart data */
+		strcat ((char*)buffer, (str_cast)INIT_BAUD_MSG);
+		itoa (huart3.Init.BaudRate, (char*)tmpMsg, NUMERIC_BASE);
+		strcat ((char*)buffer, (str_cast)tmpMsg);
 
-	/* StopBits uart data */
-	strcat ((char*)buffer, (str_cast)INIT_STOP_BITS_MSG);
-	getStopBits(tmpMsg);
-	strcat ((char*)buffer, (str_cast)tmpMsg);
+		/* WordLen uart data */
+		strcat ((char*)buffer, (str_cast)INIT_WORD_LEN_MSG);
+		getWordLen(tmpMsg);
+		strcat ((char*)buffer, (str_cast)tmpMsg);
 
-	/* Parity uart data */
-	strcat ((char*)buffer, (str_cast)INIT_PARITY_MSG);
-	getParity(tmpMsg);
-	strcat ((char*)buffer, (str_cast)tmpMsg);
+		/* StopBits uart data */
+		strcat ((char*)buffer, (str_cast)INIT_STOP_BITS_MSG);
+		getStopBits(tmpMsg);
+		strcat ((char*)buffer, (str_cast)tmpMsg);
 
-	/* End init uart msg */
-	strcat ((char*)buffer, (str_cast)INIT_END_MSG);
+		/* Parity uart data */
+		strcat ((char*)buffer, (str_cast)INIT_PARITY_MSG);
+		getParity(tmpMsg);
+		strcat ((char*)buffer, (str_cast)tmpMsg);
+
+		/* End init uart msg */
+		strcat ((char*)buffer, (str_cast)INIT_END_MSG);
+
+	}
 
 }
 
