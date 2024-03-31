@@ -45,7 +45,7 @@ int main (void) {
 	/* Configure the system clock to 180 MHz */
 	SystemClock_Config ();
 
-	API_uartInit ();
+	while (!API_uartInit ());
 
 	delay_t delayLed = {};
 

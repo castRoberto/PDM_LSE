@@ -386,3 +386,76 @@ Finished building: default.size.stdout
  
 Finished building: practice5.list
  
+18:09:29 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/Core/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Drivers/API/Src/API_debounce.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/Core/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/API/Src/API_debounce.d" -MT"Drivers/API/Src/API_debounce.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_debounce.o"
+arm-none-eabi-gcc "../Drivers/API/Src/API_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/Core/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/API/Src/API_uart.d" -MT"Drivers/API/Src/API_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_uart.o"
+arm-none-eabi-gcc -o "practice5.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/operador/STM32CubeIDE/PDM_LSE/practice5/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="practice5.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: practice5.elf
+ 
+arm-none-eabi-size  practice5.elf 
+arm-none-eabi-objdump -h -S practice5.elf  > "practice5.list"
+   text	   data	    bss	    dec	    hex	filename
+  11432	     36	   1652	  13120	   3340	practice5.elf
+Finished building: default.size.stdout
+ 
+Finished building: practice5.list
+ 
+18:10:00 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-size  practice5.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11432	     36	   1652	  13120	   3340	practice5.elf
+Finished building: default.size.stdout
+ 
+18:16:41 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/Core/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Drivers/API/Src/API_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F429ZITx -DSTM32F4 -DNUCLEO_F429ZI -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Inc -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/STM32F4xx_HAL_Driver/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/BSP/STM32F4xx_Nucleo_144" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/Core/Inc" -I"/home/operador/STM32CubeIDE/PDM_LSE/practice5/Drivers/API/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/API/Src/API_uart.d" -MT"Drivers/API/Src/API_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_uart.o"
+arm-none-eabi-gcc -o "practice5.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/operador/STM32CubeIDE/PDM_LSE/practice5/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="practice5.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: practice5.elf
+ 
+arm-none-eabi-size  practice5.elf 
+arm-none-eabi-objdump -h -S practice5.elf  > "practice5.list"
+   text	   data	    bss	    dec	    hex	filename
+  11444	     36	   1652	  13132	   334c	practice5.elf
+Finished building: default.size.stdout
+ 
+Finished building: practice5.list
+ 
+18:17:23 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-size  practice5.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11444	     36	   1652	  13132	   334c	practice5.elf
+Finished building: default.size.stdout
+ 
+18:19:42 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-size  practice5.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11444	     36	   1652	  13132	   334c	practice5.elf
+Finished building: default.size.stdout
+ 
+18:20:09 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-size  practice5.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11444	     36	   1652	  13132	   334c	practice5.elf
+Finished building: default.size.stdout
+ 
+18:21:26 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-size  practice5.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11444	     36	   1652	  13132	   334c	practice5.elf
+Finished building: default.size.stdout
+ 
+18:22:57 **** Incremental Build of configuration Debug for project practice5 ****
+make -j8 all 
+arm-none-eabi-size  practice5.elf 
+   text	   data	    bss	    dec	    hex	filename
+  11444	     36	   1652	  13132	   334c	practice5.elf
+Finished building: default.size.stdout
+ 

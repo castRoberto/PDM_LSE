@@ -1,8 +1,22 @@
-/*
- * API_uart.c
+/******************************************************************************
+ * Copyright (C) 2024 by Roberto Castro
  *
- *  Created on: Mar 31, 2024
- *      Author: operador
+ * Redistribution, modification or use of this software in source or binary
+ * forms is permitted as long as the files maintain this copyright. Users are
+ * permitted to modify this and use it to learn about the field of embedded
+ * software. Roberto Castro are not liable for any misuse of this material.
+ *
+ *****************************************************************************/
+/**
+ * @file API_uart.c
+ * @brief Module for managing communications via UART
+ *
+ * This implementation file provides an abstraction for handling serial
+ * communications via the UART electrical protocol.
+ *
+ * @author Roberto Castro
+ * @date March 31 2024
+ *
  */
 
 
@@ -11,11 +25,12 @@
 /* UART handler declaration */
 static UART_HandleTypeDef huart3;
 
+/* Type Redefinition */
 typedef const char * str_cast;
 
 
 /**
- *
+ * Constants for handling character strings
  */
 #define LEN_TMP_MSG 10
 #define LEN_INIT_MSG 120
@@ -26,7 +41,7 @@ typedef const char * str_cast;
  * Auxiliary fields of the initialization message
  */
 static const uint8_t INIT_HEADER_MSG[] 		= "[API_UART.INIT]: ";
-static const uint8_t INIT_INSTANCE_MSG[] 	= "instance{UART";
+static const uint8_t INIT_INSTANCE_MSG[] 	= "instance{";
 static const uint8_t INIT_BAUD_MSG[] 		= "}, baudRate{";
 static const uint8_t INIT_WORD_LEN_MSG[] 	= "}, wordLen{";
 static const uint8_t INIT_STOP_BITS_MSG[] 	= "}, stopBits{";
@@ -36,6 +51,16 @@ static const uint8_t INIT_END_MSG[] 		= "}\r\n";
 static const uint8_t CLEAN_CHARACTER 		= '\0';
 
 
+/**
+ * @brief Convert parity to string
+ *
+ * This function is used to convert the parity attribute of
+ * the UART instance to a printable string.
+ *
+ * @param buff: Temporary conversion buffer
+ *
+ * @return None
+ */
 static void getParity (uint8_t* buff) {
 
 	if (buff != NULL) {
@@ -79,6 +104,16 @@ static void getParity (uint8_t* buff) {
 }
 
 
+/**
+ * @brief Convert StopBits to string
+ *
+ * This function is used to convert the StopBits attribute of
+ * the UART instance to a printable string.
+ *
+ * @param buff: Temporary conversion buffer
+ *
+ * @return None
+ */
 static void getStopBits (uint8_t* buff) {
 
 	if (buff != NULL) {
@@ -115,6 +150,16 @@ static void getStopBits (uint8_t* buff) {
 }
 
 
+/**
+ * @brief Convert WordLen to string
+ *
+ * This function is used to convert the WordLen attribute of
+ * the UART instance to a printable string.
+ *
+ * @param buff: Temporary conversion buffer
+ *
+ * @return None
+ */
 static void getWordLen (uint8_t* buff) {
 
 	if (buff != NULL) {
@@ -151,30 +196,55 @@ static void getWordLen (uint8_t* buff) {
 }
 
 
+/**
+ * @brief Convert Instance to string
+ *
+ * This function is used to convert the Instance attribute of
+ * the UART instance to a printable string.
+ *
+ * @param buff: Temporary conversion buffer
+ *
+ * @return None
+ */
 static void getUartInstance (uint8_t* buff) {
 
 	if (buff != NULL) {
 
 		memset(buff, CLEAN_CHARACTER, LEN_TMP_MSG);
 
-		if 		(huart3.Instance == USART1) buff[0] = '1';
-		else if (huart3.Instance == USART2) buff[0] = '2';
-		else if (huart3.Instance == USART3) buff[0] = '3';
-		else 								strcat (
-												(char*)buff,
-												(str_cast)"_unknown"
-											);
+		if 		(huart3.Instance == USART1)
+			strcat ((char*) buff, (str_cast)"UART1");
+
+		else if (huart3.Instance == USART2)
+			strcat ((char*) buff, (str_cast)"UART2");
+
+		else if (huart3.Instance == USART3)
+			strcat ((char*) buff, (str_cast)"UART3");
+
+		else
+			strcat ((char*) buff, (str_cast)"_unknown");
 	}
 
 }
 
 
+/**
+ * @brief Convert UART instance attributes to string
+ *
+ * Function that creates a printable character string from the
+ * attributes of a UART instance
+ *
+ * @param buff: Conversion buffer
+ *
+ * @return None
+ */
 static void createInitMessage (uint8_t* buffer) {
 
 	uint8_t tmpMsg [LEN_TMP_MSG] = { CLEAN_CHARACTER };
 
 	memset(buffer, CLEAN_CHARACTER, LEN_INIT_MSG);
 
+	/* Header init msg */
 	strcat ((char*)buffer, (str_cast)INIT_HEADER_MSG);
 
 	/* Instance uart data */
@@ -208,6 +278,16 @@ static void createInitMessage (uint8_t* buffer) {
 }
 
 
+/**
+ * @brief Initializes an instance of the UART module
+ *
+ * Function that initializes a UART module and prints
+ * its configuration parameters via serial.
+ *
+ * @param None
+ *
+ * @return None
+ */
 bool_t API_uartInit (void) {
 
 	uint8_t buffer[LEN_INIT_MSG] = { CLEAN_CHARACTER };
@@ -243,6 +323,16 @@ bool_t API_uartInit (void) {
 }
 
 
+/**
+ * @brief Send a character string by serial
+ *
+ * Function that sends a character string via UART serial
+ * and calculates its length.
+ *
+ * @param pstring: String to print
+ *
+ * @return None
+ */
 void API_uartSendString (uint8_t* pstring) {
 
 	if (pstring != NULL) {
@@ -256,6 +346,16 @@ void API_uartSendString (uint8_t* pstring) {
 }
 
 
+/**
+ * @brief Send a character string by serial
+ *
+ * Function that sends a character string via UART serial.
+ *
+ * @param pstring: String to print
+ * @param size: Character string length
+ *
+ * @return None
+ */
 void API_uartSendStringSize (uint8_t* pstring, uint16_t size) {
 
 	if (pstring != NULL) {
@@ -267,6 +367,18 @@ void API_uartSendStringSize (uint8_t* pstring, uint16_t size) {
 }
 
 
+/**
+ * @brief Receives a string of characters by serial
+ *
+ * Function that receives via UART serial a character
+ * string of size size
+ *
+ * @param pstring: Pointer to the space that stores the
+ * 					received data
+ * @param size: Character string length
+ *
+ * @return None
+ */
 void API_uartReceiveStringSize (uint8_t* pstring, uint16_t size) {
 
 	if (pstring != NULL) {

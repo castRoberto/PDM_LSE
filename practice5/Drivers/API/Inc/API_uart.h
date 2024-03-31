@@ -1,8 +1,22 @@
-/*
- * API_uart.h
+/******************************************************************************
+ * Copyright (C) 2024 by Roberto Castro
  *
- *  Created on: Mar 31, 2024
- *      Author: operador
+ * Redistribution, modification or use of this software in source or binary
+ * forms is permitted as long as the files maintain this copyright. Users are
+ * permitted to modify this and use it to learn about the field of embedded
+ * software. Roberto Castro are not liable for any misuse of this material.
+ *
+ *****************************************************************************/
+/**
+ * @file API_uart.h
+ * @brief Module for managing communications via UART
+ *
+ * This header file provides an abstraction for handling serial
+ * communications via the UART electrical protocol.
+ *
+ * @author Roberto Castro
+ * @date March 31 2024
+ *
  */
 
 #ifndef __API_UART_H__

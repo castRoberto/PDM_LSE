@@ -17,4 +17,4 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice3/activeLaunchTarget=nu
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice4/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice4_1/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice4_2/activeLaunchMode=run
-org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice5/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:practice5/activeLaunchMode=debug

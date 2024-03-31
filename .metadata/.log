@@ -4413,3 +4413,8 @@ Reason: (5) Unknown MCU found on target.
 
 !ENTRY com.st.stm32cube.ide.mcu.debug 4 0 2024-03-31 17:17:05.759
 !MESSAGE Existing sessions are:
+
+!ENTRY org.eclipse.core.resources 2 2 2024-03-31 17:22:47.622
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2024-03-31 17:22:47.622
+!MESSAGE The project description file (.project) for 'borrar' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
