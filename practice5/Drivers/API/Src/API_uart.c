@@ -38,6 +38,17 @@ typedef const char * str_cast;
 
 
 /**
+ * Private function prototypes
+ */
+static void createInitMessage (uint8_t* buffer);
+static void getUartInstance (uint8_t* buff);
+static void getWordLen (uint8_t* buff);
+static void getStopBits (uint8_t* buff);
+static void getParity (uint8_t* buff);
+
+
+
+/**
  * Auxiliary fields of the initialization message
  */
 static const uint8_t INIT_HEADER_MSG[] 		= "[API_UART.INIT]: ";
