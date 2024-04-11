@@ -53,3 +53,4 @@ dkms.conf
 
 # stmcubeIDE
 .metadata/
+TempMonitorApp/Debug/

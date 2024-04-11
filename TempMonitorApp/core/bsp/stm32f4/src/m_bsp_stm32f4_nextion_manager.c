@@ -1,0 +1,120 @@
+/*
+ * m_bsp_stm32f4_nextion_manager.c
+ *
+ *  Created on: Mar 22, 2024
+ *      Author: operador
+ */
+
+
+#include "m_bsp_stm32f4_nextion_manager.h"
+
+static uint8_t NEXTION_SENSOR_CONNECT_MSG [NEXTION_SENSOR_CONNECT_MSG_LEN] =
+		"state.txt=\"Connect\"";
+
+static uint8_t NEXTION_SENSOR_CONNECT_COLOR_MSG[NEXTION_SENSOR_CONNECT_COLOR_MSG_LEN] =
+		"state.bco=02016";
+
+static uint8_t NEXTION_SENSOR_DISCONNECT_MSG [NEXTION_SENSOR_DISCONNECT_MSG_LEN] =
+		"state.txt=\"Disconnect\"";
+
+static uint8_t NEXTION_SENSOR_DISCONNECT_COLOR_MSG[NEXTION_SENSOR_CONNECT_COLOR_MSG_LEN] =
+		"state.bco=63488";
+
+static uint8_t NEXTION_WAVEFORM_MSG[NEXTION_WAVEFORM_MSG_LEN] = "add 0,0,000";
+
+
+static UART_HandleTypeDef uartDev;
+
+
+void BSP_NM_ConfigureDisplay (void) {
+
+	NEXTION_SENSOR_CONNECT_MSG[19] = NEXTION_END_MSG;
+	NEXTION_SENSOR_CONNECT_MSG[20] = NEXTION_END_MSG;
+	NEXTION_SENSOR_CONNECT_MSG[21] = NEXTION_END_MSG;
+
+	NEXTION_SENSOR_CONNECT_COLOR_MSG[15] = NEXTION_END_MSG;
+	NEXTION_SENSOR_CONNECT_COLOR_MSG[16] = NEXTION_END_MSG;
+	NEXTION_SENSOR_CONNECT_COLOR_MSG[17] = NEXTION_END_MSG;
+
+	NEXTION_SENSOR_DISCONNECT_MSG[22] = NEXTION_END_MSG;
+	NEXTION_SENSOR_DISCONNECT_MSG[23] = NEXTION_END_MSG;
+	NEXTION_SENSOR_DISCONNECT_MSG[24] = NEXTION_END_MSG;
+
+	NEXTION_SENSOR_DISCONNECT_COLOR_MSG[15] = NEXTION_END_MSG;
+	NEXTION_SENSOR_DISCONNECT_COLOR_MSG[16] = NEXTION_END_MSG;
+	NEXTION_SENSOR_DISCONNECT_COLOR_MSG[17] = NEXTION_END_MSG;
+
+	NEXTION_WAVEFORM_MSG[11] = NEXTION_END_MSG;
+	NEXTION_WAVEFORM_MSG[12] = NEXTION_END_MSG;
+	NEXTION_WAVEFORM_MSG[13] = NEXTION_END_MSG;
+
+	uartDev.Instance = NEXTION_UART_DEV;
+	uartDev.Init.BaudRate = NEXTION_UART_BAUDRATE;
+	uartDev.Init.WordLength = UART_WORDLENGTH_8B;
+	uartDev.Init.StopBits = UART_STOPBITS_1;
+	uartDev.Init.Parity = UART_PARITY_NONE;
+	uartDev.Init.Mode = UART_MODE_TX_RX;
+	uartDev.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	uartDev.Init.OverSampling = UART_OVERSAMPLING_16;
+
+	if (HAL_UART_Init (&uartDev) != HAL_OK) {
+
+		BSP_Error_Handler ();
+
+	}
+
+}
+
+static void showData (const uint8_t* pData, uint8_t len) {
+
+	HAL_UART_Transmit(&uartDev, pData, len, NEXTION_UART_TIMEOUT);
+
+}
+
+
+static void tempValueFix (uint8_t temp, uint8_t* strTemp) {
+
+	strTemp[0] = '0' + (temp / 100);
+	strTemp[1] = '0' + ((temp / 10) % 10);
+	strTemp[2] = '0' + (temp % 10);
+	strTemp[3] = '\0';
+
+}
+
+
+void BSP_NM_ShowTemperatureData (TemperatureData_t* tempData) {
+
+	if (tempData != NULL) {
+
+		if (tempData->sensorStatus) {
+
+			showData (NEXTION_SENSOR_CONNECT_COLOR_MSG, NEXTION_SENSOR_CONNECT_COLOR_MSG_LEN);
+
+			showData (NEXTION_SENSOR_CONNECT_MSG, NEXTION_SENSOR_CONNECT_MSG_LEN);
+
+		} else {
+
+			showData (NEXTION_SENSOR_DISCONNECT_COLOR_MSG, NEXTION_SENSOR_CONNECT_COLOR_MSG_LEN);
+
+			showData (NEXTION_SENSOR_DISCONNECT_MSG, NEXTION_SENSOR_DISCONNECT_MSG_LEN);
+
+		}
+
+
+		uint8_t strTemp[3] = { 0 };
+
+		tempValueFix (tempData->temperature, strTemp);
+
+		NEXTION_WAVEFORM_MSG[4] = NEXTION_WAVEFORM_ID;
+		NEXTION_WAVEFORM_MSG[6] = NEXTION_WAVEFORM_CHANNEL;
+		NEXTION_WAVEFORM_MSG[8] = strTemp[0];
+		NEXTION_WAVEFORM_MSG[9] = strTemp[1];
+		NEXTION_WAVEFORM_MSG[10] = strTemp[2];
+
+
+		showData(NEXTION_WAVEFORM_MSG, NEXTION_WAVEFORM_MSG_LEN);
+
+	}
+
+}
+
