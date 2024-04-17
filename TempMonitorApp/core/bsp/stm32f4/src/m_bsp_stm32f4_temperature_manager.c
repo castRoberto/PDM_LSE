@@ -130,3 +130,12 @@ void BSP_TM_GetTemperatureData (TemperatureData_t* tempData) {
 	}
 
 }
+
+
+SensorStatus_e BSP_TM_GetSensorStatus (void) {
+
+	MAX6675_updateDataRaw(&TEMP_SENSOR_PORTS[E_MOTOR_TEMP_SENSOR]);
+
+	return MAX6675_getSensorStatus();
+
+}

@@ -19,7 +19,10 @@
  *
  */
 
-#include "m_lib_util_debounce_machine_state.h"
+#include "m_lib_util_debounce_state_machine.h"
+
+#include "m_bsp_stm32f4.h"
+#include "m_ddt_button_data_types.h"
 
 
 /*
@@ -77,7 +80,7 @@ static void buttonReleased (DebouncePinData_t* debounce) {
  *
  * @return returnValue : bool_t; Button was pressed.
  */
-bool_t LIB_DMS_debounceReadKey (DebouncePinData_t* debounce) {
+bool_t LIB_DSM_debounceReadKey (DebouncePinData_t* debounce) {
 
 	bool_t returnValue = false;
 
@@ -104,7 +107,7 @@ bool_t LIB_DMS_debounceReadKey (DebouncePinData_t* debounce) {
  *
  * @return void.
  */
-void LIB_DMS_debounceFsmInit (DebouncePinData_t* debounce) {
+void LIB_DSM_debounceFsmInit (DebouncePinData_t* debounce) {
 
 	if (debounce != NULL) {
 
@@ -127,11 +130,11 @@ void LIB_DMS_debounceFsmInit (DebouncePinData_t* debounce) {
  *
  * @return None
  */
-void LIB_DMS_debounceFsmUpdate (DebouncePinData_t* debounce) {
+void LIB_DSM_debounceFsmUpdate (DebouncePinData_t* debounce) {
 
 	if (debounce != NULL) {
 
-		uint8_t buttonState = BSP_PBM_ReadButton(debounce->pin);
+		ButtonState_t buttonState = BSP_PBM_ReadButton(debounce->pin);
 
 		switch (debounce->currentState) {
 
@@ -186,7 +189,7 @@ void LIB_DMS_debounceFsmUpdate (DebouncePinData_t* debounce) {
 
 			default: {
 
-				LIB_DMS_debounceFsmInit (debounce);
+				LIB_DSM_debounceFsmInit (debounce);
 				break;
 
 			}

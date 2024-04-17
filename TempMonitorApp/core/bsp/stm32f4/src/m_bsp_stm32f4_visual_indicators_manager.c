@@ -143,6 +143,15 @@ void BSP_VIM_DeActivateTemperatureSensorStatusIndicator (void) {
 }
 
 
+void BSP_VIM_ActivateAllVisualIndicators (void) {
+
+	BSP_VIM_ActivateRunnigIndicator();
+	BSP_VIM_ActivateTemperatureAlarmIndicator();
+	BSP_VIM_ActivateTemperatureSensorStatusIndicator();
+
+}
+
+
 //TODO: DOCUMENTA
 void BSP_VIM_LedOn (Led_e led) {
 

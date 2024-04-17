@@ -8,6 +8,13 @@
 
 #include "m_bsp_stm32f4_nextion_manager.h"
 
+#include "m_bsp_stm32f4_setup.h"
+#include "m_bsp_stm32_system_config.h"
+
+#include "m_driver_nextion.h"
+#include "m_driver_nextion_port.h"
+
+
 
 #define MAIN_PAGE 0
 

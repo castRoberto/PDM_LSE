@@ -8,7 +8,7 @@
  *
  *****************************************************************************/
 /**
- * @file m_lib_util_delay.h
+ * @file m_lib_util_delay_processor.h
  * @brief Non-blocking delay manipulation
  *
  * This header file provides an abstraction for manipulating
@@ -22,17 +22,14 @@
 #ifndef __M_LIB_UTIL_DELAY_H__
 #define __M_LIB_UTIL_DELAY_H__
 
-#include <stdint.h>
-#include <stdbool.h>
-#include <stddef.h>
 
-#include "stm32f4xx_hal.h"
-#include "m_bsp_stm32_hardware_config.h"
-#include "m_bsp_stm32f4.h"
 #include "m_ddt_common_types.h"
 
-// Defining data types
-typedef uint32_t tick_t;
+/**
+ * Consts definitions
+ */
+#define DEFAULT_PERIOD_10MS 10
+
 
 /**
  * structure to contain information for delay
@@ -47,43 +44,12 @@ typedef struct{
 } delay_t;
 //
 
+
 /**
- * @brief Time initializer
- *
- * Function that initializes a time structure with
- * default values
- *
- * @param delay: Time structure
- * @param duration: Default wait
- *
- * @return void.
+ * Prototypes of public functions of the module
  */
 void LIB_DP_delayInit( delay_t * delay, tick_t duration );
-
-
-/**
- * @brief Check elapsed time
- *
- * Function that checks if for a given time structure,
- * the timeout has been met
- *
- * @param delay: Time structure
- *
- * @return timeOut.
- */
 bool_t LIB_DP_delayRead( delay_t * delay );
-
-
-/**
- * @brief Delay updater
- *
- * This function updates the timeout duration
- *
- * @param delay: Time structure
- * @param duration: New waiting time
- *
- * @return void.
- */
 void LIB_DP_delayWrite( delay_t * delay, tick_t duration );
 
 #endif /* __M_LIB_UTIL_DELAY_H__ */

@@ -19,13 +19,17 @@
  *
  */
 
-#include <m_lib_util_delay_processor.h>
+#include "m_lib_util_delay_processor.h"
+
+#include "m_bsp_stm32f4.h"
+
 
 /**
  * @brief Check elapsed time
  *
  * Function that checks if for a given time structure,
  * the timeout has been met
+ *
  *
  * @param now: Current time
  * @param delay: Time structure
@@ -38,6 +42,19 @@ static bool_t isTimeOut (tick_t now, delay_t* delay) {
 
 }
 
+
+/**
+ * @brief Time initializer
+ *
+ * Function that initializes a time structure with
+ * default values
+ *
+ *
+ * @param delay: Time structure
+ * @param duration: Default wait
+ *
+ * @return void.
+ */
 void LIB_DP_delayInit( delay_t* delay, tick_t duration ) {
 
 	if (delay != NULL) {
@@ -52,6 +69,18 @@ void LIB_DP_delayInit( delay_t* delay, tick_t duration ) {
 
 }
 
+
+/**
+ * @brief Check elapsed time
+ *
+ * Function that checks if for a given time structure,
+ * the timeout has been met
+ *
+ *
+ * @param delay: Time structure
+ *
+ * @return timeOut.
+ */
 bool_t LIB_DP_delayRead( delay_t * delay ) {
 
 	bool_t timeOut = false;
@@ -84,6 +113,18 @@ bool_t LIB_DP_delayRead( delay_t * delay ) {
 
 }
 
+
+/**
+ * @brief Delay updater
+ *
+ * This function updates the timeout duration
+ *
+ *
+ * @param delay: Time structure
+ * @param duration: New waiting time
+ *
+ * @return void.
+ */
 void LIB_DP_delayWrite( delay_t * delay, tick_t duration ) {
 
 	if ((delay != NULL) && (duration > 0)) {

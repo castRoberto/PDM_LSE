@@ -7,8 +7,9 @@
  * software. Roberto Castro are not liable for any misuse of this material.
  *
  *****************************************************************************/
+
 /**
- * @file m_lib_util_debounce.h
+ * @file m_lib_util_debounce_state_machine.h
  * @brief Finite state machine for bounce management
  *
  * This header file provides an abstraction for handling debounces
@@ -24,7 +25,6 @@
 
 #include "m_ddt_common_types.h"
 #include "m_lib_util_delay_processor.h"
-#include "m_bsp_stm32f4.h"
 
 
 /**
@@ -40,6 +40,9 @@ typedef enum {
 } DebounceState_t;
 
 
+/**
+ * Type that allows generalizing anti-bounce for any pin
+ */
 typedef struct {
 
 	bool_t keyPressed;
@@ -53,9 +56,9 @@ typedef struct {
 /**
  * Prototype of public functions of the package
  */
-bool_t LIB_DMS_debounceReadKey (DebouncePinData_t* debounce);
-void LIB_DMS_debounceFsmInit (DebouncePinData_t* debounce);
-void LIB_DMS_debounceFsmUpdate (DebouncePinData_t* debounce);
+bool_t LIB_DSM_debounceReadKey (DebouncePinData_t* debounce);
+void LIB_DSM_debounceFsmInit (DebouncePinData_t* debounce);
+void LIB_DSM_debounceFsmUpdate (DebouncePinData_t* debounce);
 
 
 #endif /* __API_DEBOUNCE_H__ */

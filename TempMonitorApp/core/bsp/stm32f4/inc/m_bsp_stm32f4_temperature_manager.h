@@ -13,7 +13,7 @@
 
 #include "stm32f4xx_hal.h"
 
-#include "m_bsp_stm32_hardware_config.h"
+#include "m_bsp_stm32_system_config.h"
 #include "m_ddt_common_types.h"
 #include "m_ddt_temperature_data_types.h"
 #include "m_bsp_stm32f4_setup.h"
@@ -32,6 +32,7 @@ typedef enum {
 
 bool_t BSP_TM_InitTemperatureSensors (void);
 void BSP_TM_GetTemperatureData (TemperatureData_t* tempData);
+SensorStatus_e BSP_TM_GetSensorStatus (void);
 
 
 #endif /* __M_BSP_STM32F4_TEMPERATURE_MANAGER_H__ */

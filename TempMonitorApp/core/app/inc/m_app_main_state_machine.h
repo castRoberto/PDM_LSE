@@ -8,11 +8,11 @@
  *
  *****************************************************************************/
 /**
- * @file API_debounce.h
- * @brief Finite state machine for bounce management
+ * @file m_app_main_state_machine.h
+ * @brief Finite state machine to manage the application
  *
- * This header file provides an abstraction for handling debounces
- * in physical pushbuttons on the board.
+ * This header file provides an abstraction to handle the internal states
+ * of the electric motor temperature monitoring application.
  *
  * @author Roberto Castro
  * @date April 14 2024
@@ -23,7 +23,9 @@
 #define __M_APP_MAIN_STATE_MACHINE_H__
 
 
-
+/**
+ * Public functions of the main state machine of the system
+ */
 void APP_MSM_init (void);
 void APP_MSM_update (void);
 

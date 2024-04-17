@@ -8,11 +8,10 @@
 #ifndef __M_BSP_STM32F4_BUTTONS_H__
 #define __M_BSP_STM32F4_BUTTONS_H__
 
-#include <stdint.h>
 
 #include "stm32f4xx_hal.h"
 
-#include "m_bsp_stm32_hardware_config.h"
+#include "m_bsp_stm32_system_config.h"
 #include "m_ddt_button_data_types.h"
 
 

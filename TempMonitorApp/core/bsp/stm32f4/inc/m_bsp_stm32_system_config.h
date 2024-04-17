@@ -52,7 +52,6 @@
 
 #define RINNING_INDICATOR_PERIOD_LOW_MS							1000
 #define RINNING_INDICATOR_PERIOD_HIGH_MS						10
-#define DEFAULT_PERIOD_10MS										10
 
 
 /**

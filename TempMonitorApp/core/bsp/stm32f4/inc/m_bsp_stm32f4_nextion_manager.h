@@ -8,16 +8,9 @@
 #ifndef __M_BSP_STM32F4_NEXTION_MANAGER_H__
 #define __M_BSP_STM32F4_NEXTION_MANAGER_H__
 
-#include <stdint.h>
-#include <string.h>
 
 #include "stm32f4xx_hal.h"
-
-#include "m_bsp_stm32f4_setup.h"
-#include "m_bsp_stm32_hardware_config.h"
 #include "m_ddt_temperature_data_types.h"
-#include "m_driver_nextion.h"
-#include "m_driver_nextion_port.h"
 
 
 #define NUM_NEXTION_OBJS 6

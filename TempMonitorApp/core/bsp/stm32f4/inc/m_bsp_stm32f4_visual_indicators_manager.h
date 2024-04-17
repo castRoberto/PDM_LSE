@@ -12,7 +12,7 @@
 
 #include "stm32f4xx_hal.h"
 
-#include "m_bsp_stm32_hardware_config.h"
+#include "m_bsp_stm32_system_config.h"
 #include "m_ddt_led_data_types.h"
 
 
@@ -49,6 +49,7 @@ void BSP_VIM_ActivateTemperatureAlarmIndicator (void);
 void BSP_VIM_DeActivateTemperatureAlarmIndicator (void);
 void BSP_VIM_ActivateTemperatureSensorStatusIndicator (void);
 void BSP_VIM_DeActivateTemperatureSensorStatusIndicator (void);
+void BSP_VIM_ActivateAllVisualIndicators (void);
 
 void BSP_VIM_LedOn (Led_e led);
 void BSP_VIM_LedOff (Led_e led);
