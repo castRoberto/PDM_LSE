@@ -27,7 +27,7 @@ extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "m_app_temp_monitor_core.h"
+#include "m_app_main_state_machine.h"
 
 
 #ifdef __cplusplus

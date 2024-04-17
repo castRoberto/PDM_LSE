@@ -9,6 +9,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Proyectos\LSE\bimester1\PDM_LSE\TempMonitorApp"/>
+			<item value="C:\Proyectos\LSE\bimester1\PDM_LSE\practice5"/>
 			<item value="/home/operador/STM32CubeIDE/PdM_workspace/Ej2_uart"/>
 			<item value="/home/operador/STM32CubeIDE/PDM_LSE/practice3"/>
 			<item value="/home/operador/STM32CubeIDE/PDM_LSE/practice2"/>

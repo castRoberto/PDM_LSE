@@ -29,11 +29,10 @@
 #include "stm32f4xx_hal.h"
 #include "m_bsp_stm32_hardware_config.h"
 #include "m_bsp_stm32f4.h"
+#include "m_ddt_common_types.h"
 
 // Defining data types
 typedef uint32_t tick_t;
-
-typedef bool bool_t;
 
 /**
  * structure to contain information for delay

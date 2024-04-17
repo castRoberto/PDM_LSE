@@ -1,0 +1,156 @@
+/*
+ * m_app_main_state_machine.c
+ *
+ *  Created on: Apr 14, 2024
+ *      Author: rober
+ */
+
+
+#include "m_app_main_state_machine.h"
+
+#include "m_app_temp_monitor_core.h"
+#include "m_lib_util_debounce_machine_state.h"
+
+
+static DebouncePinData_t startStopDebounce = { 0 };
+
+
+typedef enum {
+
+	E_CONFIG_STATE = 1,
+	E_FAILURE_STATE = 2,
+	E_IDLE_STATE = 3,
+	E_ACTIVE_STATE = 4,
+	E_DATA_ACQ_STATE = 5,
+	E_DATA_PROC_STATE = 6,
+	E_DATA_SHOW_STATE = 7,
+
+} MainFSM_States_t;
+
+
+static MainFSM_States_t currentState;
+
+
+void APP_MSM_init (void) {
+
+	currentState = E_CONFIG_STATE;
+
+	startStopDebounce.pin = E_START_STOP_BUTTON;
+
+	LIB_DMS_debounceFsmInit(&startStopDebounce);
+
+}
+
+
+void APP_MSM_update (void) {
+
+	LIB_DMS_debounceFsmUpdate(&startStopDebounce);
+
+	switch (currentState) {
+
+		case E_CONFIG_STATE: {
+
+			if (APP_TMC_setup() == E_NO_ERROR) {
+
+				currentState = E_IDLE_STATE;
+
+			} else {
+
+				currentState = E_FAILURE_STATE;
+
+			}
+
+			break;
+
+		}
+
+		case E_FAILURE_STATE: {
+
+			if (RECONFIGURE_SYSTEM) { currentState = E_CONFIG_STATE; }
+
+			break;
+
+		}
+
+		case E_IDLE_STATE: {
+
+			if (LIB_DMS_debounceReadKey(&startStopDebounce)) {
+
+				currentState = E_ACTIVE_STATE;
+
+			}
+
+			break;
+
+		}
+
+		case E_ACTIVE_STATE: {
+
+			if (LIB_DMS_debounceReadKey(&startStopDebounce)) {
+
+				currentState = E_IDLE_STATE;
+
+			} else {
+
+				currentState = E_DATA_ACQ_STATE;
+
+			}
+
+			APP_TMC_runningIndicator ();
+
+			break;
+
+		}
+
+		case E_DATA_ACQ_STATE: {
+
+			if (APP_TMC_dataAcquisition() == E_DATA_OK) {
+
+				currentState = E_DATA_PROC_STATE;
+
+			} else {
+
+				currentState = E_ACTIVE_STATE;
+
+			}
+
+			break;
+
+		}
+
+		case E_DATA_PROC_STATE: {
+
+			if (APP_TMC_dataProcessing() == E_PROC_OK) {
+
+				currentState = E_DATA_SHOW_STATE;
+
+			} else {
+
+				currentState = E_DATA_ACQ_STATE;
+
+			}
+
+			break;
+
+		}
+
+		case E_DATA_SHOW_STATE: {
+
+			APP_TMC_dataShow();
+
+			currentState = E_ACTIVE_STATE;
+
+			break;
+
+		}
+
+		default: {
+
+			APP_MSM_init ();
+			break;
+
+		}
+
+	}
+
+}

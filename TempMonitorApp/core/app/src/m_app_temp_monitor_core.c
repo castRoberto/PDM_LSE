@@ -5,20 +5,37 @@
  *      Author: recastrobeltran
  */
 
-#include <stdbool.h>
 
 #include "m_app_temp_monitor_core.h"
 #include "m_bsp_stm32_hardware_config.h"
 #include "m_lib_util_delay_processor.h"
+#include "m_lib_util_temp_converter.h"
 #include "m_ddt_temperature_data_types.h"
+#include "m_ddt_common_types.h"
+#include "m_ddt_machine_state_inputs.h"
 
 
 static delay_t runnigIndicatorDelay;
 static delay_t sampligRateDelay;
 static TemperatureData_t tempData;
+static TemperatureData_t tempDataKelvin;
+static TemperatureData_t tempDataFaren;
 
 
-static void manageIndicators (void) {
+static void copyTempData (TemperatureData_t* source, TemperatureData_t* des) {
+
+	if (source != NULL && des != NULL) {
+
+		des->sensorStatus = source->sensorStatus;
+		des->temperature = source->temperature;
+		des->units = source->units;
+
+	}
+
+}
+
+
+void APP_TMC_runningIndicator (void) {
 
 	/**
 	 * Manage running indicator
@@ -37,63 +54,113 @@ static void manageIndicators (void) {
 
 	}
 
+}
+
+
+ConfigResult_t APP_TMC_setup (void) {
+
+	/* MCU Configuration--------------------------------------------------------*/
+	ConfigResult_t result = E_ERROR;
+
+	LIB_DP_delayInit (&runnigIndicatorDelay, RINNING_INDICATOR_PERIOD_LOW_MS);
+
+	LIB_DP_delayInit (&sampligRateDelay, SAMPLING_RATE_MS);
+
+	if (BSP_HardwareSetup ()) {
+
+		result = E_NO_ERROR;
+
+	}
+
+	return result;
+
+}
+
+
+DataAcquisitionResult_t APP_TMC_dataAcquisition (void) {
+
+	DataAcquisitionResult_t result = E_NO_DATA;
+
+	if (LIB_DP_delayRead (&sampligRateDelay)) {
+
+		BSP_TM_GetTemperatureData(&tempData);
+
+		result = E_DATA_OK;
+
+	}
+
+	return result;
+
+}
+
+
+DataProcessingResult_t APP_TMC_dataProcessing (void) {
+
+	DataProcessingResult_t result = E_ERROR_PROC;
+
+	if (tempData.temperature >= MIN_TEMP && tempData.temperature <= MAX_TEMP) {
+
+		copyTempData(&tempData, &tempDataKelvin);
+
+		LIB_TC_celciusToKelvin(&tempDataKelvin);
+
+		copyTempData(&tempData, &tempDataFaren);
+
+		LIB_TC_celciusToFarenheit(&tempDataFaren);
+
+		result = E_PROC_OK;
+
+	}
+
 	/**
 	 * Manage sensor status
 	 */
 	if (tempData.sensorStatus == E_CONNECTED) {
 
 		BSP_VIM_DeActivateTemperatureSensorStatusIndicator();
+		BSP_NM_deActivateStateSensorIndicator();
+
 
 	} else {
 
 		BSP_VIM_ActivateTemperatureSensorStatusIndicator();
+		BSP_NM_activateStateSensorIndicator();
 
 	}
-
 
 	/**
 	 * ALARM TEMPERATURE
 	 */
-	if (tempData.temperature > TEMPERATURE_THRESHOLD_ALARM) {
+	if (tempData.temperature > TEMPERATURE_THRESHOLD_ALARM &&
+		tempData.sensorStatus == E_CONNECTED) {
 
 		BSP_VIM_ActivateTemperatureAlarmIndicator();
+		BSP_NM_activateTempAlarmIndicator();
 
 	} else {
 
 		BSP_VIM_DeActivateTemperatureAlarmIndicator();
+		BSP_NM_deActivateTempAlarmIndicator();
 
 	}
 
-}
-
-static void manageTemperature (void) {
-
-	if (LIB_DP_delayRead (&sampligRateDelay)) {
-
-		BSP_TM_GetTemperatureData(&tempData);
-
-		BSP_NM_ShowTemperatureData(&tempData);
-
-	}
+	return result;
 
 }
 
 
-void APP_TMC_setup (void) {
+DataShowResult_t APP_TMC_dataShow (void) {
 
-	/* MCU Configuration--------------------------------------------------------*/
-	BSP_HardwareSetup ();
+	DataShowResult_t result = E_SHOW_OK;
 
-	LIB_DP_delayInit (&runnigIndicatorDelay, RINNING_INDICATOR_PERIOD_LOW_MS);
+	BSP_NM_updateTempGraph(&tempData);
 
-	LIB_DP_delayInit (&sampligRateDelay, SAMPLING_RATE_MS);
+	BSP_NM_ShowTemperatureCelcius(&tempData);
 
-}
+	BSP_NM_ShowTemperatureKelvin(&tempDataKelvin);
 
-void APP_TMC_run (void) {
+	BSP_NM_ShowTemperatureFarenheit(&tempDataFaren);
 
-	manageTemperature();
-
-	manageIndicators();
+	return result;
 
 }

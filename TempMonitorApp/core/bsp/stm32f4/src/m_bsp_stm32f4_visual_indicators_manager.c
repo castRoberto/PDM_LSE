@@ -47,7 +47,9 @@ static void initVisualIndicator (const VisualIndicator_t* const visualIndicator)
 	GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
 
 	HAL_GPIO_Init (visualIndicator->port, &GPIO_InitStruct);
-	HAL_GPIO_WritePin (visualIndicator->port, visualIndicator->pin, GPIO_PIN_RESET);
+
+	HAL_GPIO_WritePin
+		(visualIndicator->port, visualIndicator->pin, GPIO_PIN_RESET);
 
 }
 
@@ -61,14 +63,10 @@ static void initVisualIndicator (const VisualIndicator_t* const visualIndicator)
  */
 static void deInitVisualIndicator (const VisualIndicator_t* const visualIndicator) {
 
-	GPIO_InitTypeDef gpio_init_structure;
-	/* DeInit the GPIO_LED pin */
-	gpio_init_structure.Pin = visualIndicator->pin;
-
 	/* Turn off LED */
 	HAL_GPIO_WritePin (visualIndicator->port, visualIndicator->pin, GPIO_PIN_RESET);
 
-	HAL_GPIO_DeInit (visualIndicator->port, gpio_init_structure.Pin);
+	HAL_GPIO_DeInit (visualIndicator->port, visualIndicator->pin);
 
 }
 
@@ -76,7 +74,7 @@ static void deInitVisualIndicator (const VisualIndicator_t* const visualIndicato
 //TODO: DOCUMENTA
 void BSP_VIM_InitVisualIndicators (void) {
 
-	for (int8_t i = 0; i < NUM_VISUAL_INDICATORS; i++) {
+	for (int8_t i = E_FIRST_VISUAL_INDICATOR; i < E_LAST_VISUAL_INDICATOR; i++) {
 
 		initVisualIndicator (&VISUAL_INDICATORS [i]);
 
@@ -88,7 +86,7 @@ void BSP_VIM_InitVisualIndicators (void) {
 //TODO: DOCUMENTA
 void BSP_VIM_DeInitVisualIndicators (void) {
 
-	for (int8_t i = 0; i < NUM_VISUAL_INDICATORS; i++) {
+	for (int8_t i = E_FIRST_VISUAL_INDICATOR; i < E_LAST_VISUAL_INDICATOR; i++) {
 
 		deInitVisualIndicator (&VISUAL_INDICATORS[i]);
 

@@ -94,10 +94,12 @@ static void SystemClock_Config (void) {
  *
  * @return void.
  */
-void BSP_HardwareSetup (void) {
+bool_t BSP_HardwareSetup (void) {
+
+	bool_t result = true;
 
 	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-	HAL_Init ();
+	result &= (HAL_Init () == HAL_OK);
 
 	/* Configure the system clock */
 	SystemClock_Config ();
@@ -106,8 +108,13 @@ void BSP_HardwareSetup (void) {
 
 	BSP_PBM_InitButtons ();
 
-	BSP_TM_InitTemperatureSensors ();
+	result &= BSP_TM_InitTemperatureSensors ();
 
-	BSP_NM_ConfigureDisplay ();
+	result &= BSP_NM_ConfigureDisplay ();
+
+	return result;
 
 }
+
+
+

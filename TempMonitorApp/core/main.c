@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include <main.h>
-#include "string.h"
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -29,12 +28,12 @@
   */
 int main (void) {
 
-	APP_TMC_setup ();
+	APP_MSM_init();
 
 	/* Infinite loop */
 	while (1) {
 
-		APP_TMC_run ();
+		APP_MSM_update();
 
 	}
 

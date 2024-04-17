@@ -66,9 +66,9 @@ void BSP_PBM_DeInitButtons (void) {
 }
 
 
-ButtonState_t BSP_PBM_ReadStarButton (void) {
+ButtonState_t BSP_PBM_ReadStartStopButton (void) {
 
-	return BSP_PBM_ReadButton (E_START_BUTTON);
+	return BSP_PBM_ReadButton (E_START_STOP_BUTTON);
 
 }
 

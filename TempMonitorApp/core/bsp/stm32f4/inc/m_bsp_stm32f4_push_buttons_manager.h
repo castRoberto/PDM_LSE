@@ -20,7 +20,7 @@ typedef enum {
 
 	E_BUTTON1 = 0,
 
-	E_START_BUTTON = E_BUTTON1,
+	E_START_STOP_BUTTON = E_BUTTON1,
 
 } Button_e;
 
@@ -35,7 +35,7 @@ typedef struct {
 
 void BSP_PBM_InitButtons (void);
 void BSP_PBM_DeInitButtons (void);
-ButtonState_t BSP_PBM_ReadStarButton (void);
+ButtonState_t BSP_PBM_ReadStartStopButton (void);
 
 ButtonState_t BSP_PBM_ReadButton (Button_e button);
 

@@ -7,20 +7,7 @@
 #include "m_bsp_stm32f4_temperature_manager.h"
 
 
-static SPI_HandleTypeDef motorTempSensorSpiHandler = {
-		.Instance = MOTOR_TEMP_SENSOR_MAX6675_SPI_DEV,
-		.Init.Mode = MOTOR_TEMP_SENSOR_MAX6675_SPI_MODE,
-		.Init.Direction = SPI_DIRECTION_2LINES,
-		.Init.DataSize = MOTOR_TEMP_SENSOR_MAX6675_SPI_DATA_SIZE,
-		.Init.CLKPolarity = MOTOR_TEMP_SENSOR_MAX6675_SPI_CPOL,
-		.Init.CLKPhase = MOTOR_TEMP_SENSOR_MAX6675_SPI_CPHA,
-		.Init.NSS = SPI_NSS_SOFT,
-		.Init.BaudRatePrescaler = MOTOR_TEMP_SENSOR_MAX6675_SPI_PRESCALER,
-		.Init.FirstBit = MOTOR_TEMP_SENSOR_MAX6675_SPI_ENDIANNESS,
-		.Init.TIMode = SPI_TIMODE_DISABLE,
-		.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE,
-		.Init.CRCPolynomial = 10
-};
+static SPI_HandleTypeDef motorTempSensorSpiHandler;
 
 static Max6675_Port_t TEMP_SENSOR_PORTS [NUM_TEMPERATURE_SENSORS] = {
 
@@ -37,15 +24,11 @@ static Max6675_Port_t TEMP_SENSOR_PORTS [NUM_TEMPERATURE_SENSORS] = {
 };
 
 
-static void initTemperatureSensor (Max6675_Port_t* temperatureSensor) {
+static bool_t initTemperatureSensor (Max6675_Port_t* temperatureSensor) {
 
-	if (HAL_SPI_Init (temperatureSensor->hspi) != HAL_OK) {
-
-		BSP_Error_Handler ();
-
-	}
-
+	SPI_HandleTypeDef* spiHandler;
 	GPIO_InitTypeDef  GPIO_InitStruct;
+	bool_t successfulConfig = true;
 
 	/* Enable the GPIO_LED Clock */
 	__HAL_RCC_GPIOC_CLK_ENABLE();
@@ -55,28 +38,77 @@ static void initTemperatureSensor (Max6675_Port_t* temperatureSensor) {
 	__HAL_RCC_GPIOD_CLK_ENABLE();
 	__HAL_RCC_GPIOG_CLK_ENABLE();
 
-	HAL_GPIO_WritePin (temperatureSensor->spiSsPinPort, temperatureSensor->spiSsPin, GPIO_PIN_RESET);
+	if (temperatureSensor->hspi->Instance == MOTOR_TEMP_SENSOR_MAX6675_SPI_DEV) {
+
+		spiHandler = temperatureSensor->hspi;
+
+		spiHandler->Init.Mode = MOTOR_TEMP_SENSOR_MAX6675_SPI_MODE;
+		spiHandler->Init.Direction = SPI_DIRECTION_2LINES;
+		spiHandler->Init.DataSize = MOTOR_TEMP_SENSOR_MAX6675_SPI_DATA_SIZE;
+		spiHandler->Init.CLKPolarity = MOTOR_TEMP_SENSOR_MAX6675_SPI_CPOL;
+		spiHandler->Init.CLKPhase = MOTOR_TEMP_SENSOR_MAX6675_SPI_CPHA;
+		spiHandler->Init.NSS = SPI_NSS_SOFT;
+		spiHandler->Init.BaudRatePrescaler = MOTOR_TEMP_SENSOR_MAX6675_SPI_PRESCALER;
+		spiHandler->Init.FirstBit = MOTOR_TEMP_SENSOR_MAX6675_SPI_ENDIANNESS;
+		spiHandler->Init.TIMode = SPI_TIMODE_DISABLE;
+		spiHandler->Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+		spiHandler->Init.CRCPolynomial = 10;
 
 
-	/* Configure the GPIO_LED pin */
-	GPIO_InitStruct.Pin = temperatureSensor->spiSsPin;
-	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+		HAL_GPIO_WritePin
+			(temperatureSensor->spiSsPinPort,
+			 temperatureSensor->spiSsPin, GPIO_PIN_RESET);
+
+		/* Configure the GPIO_LED pin */
+		GPIO_InitStruct.Pin = temperatureSensor->spiSsPin;
+		GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+		GPIO_InitStruct.Pull = GPIO_NOPULL;
+		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+
+	}
 
 	HAL_GPIO_Init (temperatureSensor->spiSsPinPort, &GPIO_InitStruct);
-	HAL_GPIO_WritePin (temperatureSensor->spiSsPinPort, temperatureSensor->spiSsPin, GPIO_PIN_SET);
+
+	HAL_GPIO_WritePin
+		(temperatureSensor->spiSsPinPort,
+		 temperatureSensor->spiSsPin, GPIO_PIN_SET);
+
+	successfulConfig &= (HAL_SPI_Init (temperatureSensor->hspi) == HAL_OK);
+
+	return successfulConfig;
 
 }
 
 
-void BSP_TM_InitTemperatureSensors (void) {
+bool_t BSP_TM_InitTemperatureSensors (void) {
 
-	for (int8_t i = 0; i < NUM_TEMPERATURE_SENSORS; i++) {
+	bool_t result = true;
+	Max6675_Port_t* temperatureSensor = { 0 };
 
-		initTemperatureSensor (&TEMP_SENSOR_PORTS[i]);
+	for (int8_t i = E_FIRTS_TEMP_SENSOR; i < E_LAST_TEMP_SENSOR; i++) {
+
+		temperatureSensor = &TEMP_SENSOR_PORTS[i];
+
+		switch (i) {
+
+			case E_MOTOR_TEMP_SENSOR: {
+
+				temperatureSensor->hspi->Instance = MOTOR_TEMP_SENSOR_MAX6675_SPI_DEV;
+				break;
+
+			}
+
+			default:
+				temperatureSensor->hspi->Instance = NULL;
+				break;
+
+		};
+
+		result &= initTemperatureSensor (temperatureSensor);
 
 	}
+
+	return result;
 
 }
 
