@@ -25,7 +25,7 @@
 
 #include "m_bsp_stm32f4.h"
 
-#include "m_ddt_machine_state_inputs.h"
+#include "m_ddt_machine_state_inputs_types.h"
 
 
 

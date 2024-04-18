@@ -30,7 +30,7 @@
 #include "m_lib_util_temp_converter.h"
 
 #include "m_ddt_temperature_data_types.h"
-#include "m_ddt_machine_state_inputs.h"
+#include "m_ddt_machine_state_inputs_types.h"
 
 
 
