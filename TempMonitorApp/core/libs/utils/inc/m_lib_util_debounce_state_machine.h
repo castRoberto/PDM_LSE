@@ -23,6 +23,8 @@
 #ifndef __API_DEBOUNCE_H__
 #define __API_DEBOUNCE_H__
 
+
+#include "m_bsp_stm32f4.h"
 #include "m_ddt_common_types.h"
 #include "m_lib_util_delay_processor.h"
 

@@ -8,7 +8,7 @@
  *
  *****************************************************************************/
 /**
- * @file m_bsp_stm32f4_setup.h
+ * @file m_bsp_stm32f4_setup.c
  * @brief Hardware configuration module
  *
  * This header file is used as an interface to expose functions that
@@ -92,7 +92,7 @@ static void SystemClock_Config (void) {
  *
  * @param void
  *
- * @return void.
+ * @return result: Configuration result.
  */
 bool_t BSP_HardwareSetup (void) {
 

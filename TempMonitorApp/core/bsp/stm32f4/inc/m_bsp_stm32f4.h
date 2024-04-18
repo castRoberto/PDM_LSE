@@ -28,7 +28,6 @@
 /**
  * Prototypes of common functions of a bsp
  */
-
 uint32_t BSP_GetCurrentTime (void);
 
 #endif /* __M_BSP_STM32F4_H__ */

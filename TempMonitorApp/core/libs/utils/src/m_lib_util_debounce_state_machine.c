@@ -21,7 +21,6 @@
 
 #include "m_lib_util_debounce_state_machine.h"
 
-#include "m_bsp_stm32f4.h"
 #include "m_ddt_button_data_types.h"
 
 

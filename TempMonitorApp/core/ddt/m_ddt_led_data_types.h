@@ -34,6 +34,7 @@ typedef enum {
 
 	E_LED_RESET = 0,
 	E_LED_SET = 1,
+	E_UNKNOWN_VI_STATE = 2,
 
 } LedState_t;
 

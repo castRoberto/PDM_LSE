@@ -8,11 +8,11 @@
  *
  *****************************************************************************/
 /**
- * @file m_bsp_stm32_hardware_config.h
- * @brief Defining hardware instances
+ * @file m_bsp_stm32_system_config.h
+ * @brief Defining configuration parameters
  *
- * This header file is used to define all hardware device instances of
- * the application
+ * This header file contains the system configuration
+ * parameters, both at the low level and at the application level.
  *
  * @author Roberto Castro
  * @date March 21 2024
@@ -59,7 +59,7 @@
  */
 #define NUM_TEMPERATURE_SENSORS 1
 
-#define MOTOR_TEMP_SENSOR_MAX6675_SPI_DEV						SPI1	//SPI_TypeDef
+#define MOTOR_TEMP_SENSOR_MAX6675_SPI_DEV						SPI1
 #define MOTOR_TEMP_SENSOR_MAX6675_SPI_MODE						SPI_MODE_MASTER
 #define MOTOR_TEMP_SENSOR_MAX6675_SPI_SS						GPIO_PIN_14
 #define MOTOR_TEMP_SENSOR_MAX6675_SPI_SS_PORT					GPIOD

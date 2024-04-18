@@ -24,7 +24,6 @@
 
 /*---------------------- Includes ----------------- */
 #include "stm32f4xx_hal.h"
-#include "m_ddt_button_data_types.h"
 #include "m_bsp_stm32f4_visual_indicators_manager.h"
 #include "m_bsp_stm32f4_push_buttons_manager.h"
 #include "m_bsp_stm32f4_temperature_manager.h"
@@ -32,14 +31,10 @@
 
 
 /**
- * Prototype of function by hardware error handler
- */
-void BSP_Error_Handler (void);
-
-/**
  * Prototypes of the services provided by the BSP layer configuration
  * module
  */
+void BSP_Error_Handler (void);
 bool_t BSP_HardwareSetup (void);
 
 #endif /* __M_BSP_STM32F4_SETUP_H__ */

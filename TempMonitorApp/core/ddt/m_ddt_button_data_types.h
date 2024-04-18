@@ -32,6 +32,7 @@ typedef enum {
 
 	E_BUTTON_RESET = 0,
 	E_BUTTON_SET = 1,
+	E_UNKNOWN_PB_STATE = 2,
 
 } ButtonState_t;
 

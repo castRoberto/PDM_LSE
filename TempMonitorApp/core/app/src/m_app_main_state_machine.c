@@ -128,6 +128,10 @@ void APP_MSM_update (void) {
 
 				currentState = E_ACTIVE_STATE;
 
+			} else {
+
+				BSP_VIM_ActivateAllVisualIndicators();
+
 			}
 
 			break;
