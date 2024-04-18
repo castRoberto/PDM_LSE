@@ -116,6 +116,11 @@ float MAX6675_getTemperature (void) {
  * represents the state of the data latch. transducer.
  * Check the device datasheet where you will find more details
  *
+ * Reading bit 2 of the data lock indicates to the system the
+ * connection/disconnection status of the type k thermocouple, if
+ * the bit has a state of "0" the sensor is operating correctly,
+ * otherwise it will be disconnected
+ *
  *
  * @param None
  *
