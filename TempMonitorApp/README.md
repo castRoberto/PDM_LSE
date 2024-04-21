@@ -11,3 +11,15 @@ Roberto Enrique Castro Beltran
 This project consists of a layered system of collecting temperature data and displaying it on a graphic screen. The block diagram in Figure 1 shows the different components that make it up.
 
 <img src="https://raw.githubusercontent.com/castRoberto/PDM_LSE/main/TempMonitorApp/doc/BlockDiagram.png">
+
+
+### Peripherals
+|Peripheral|Description|
+|----------|---------|
+|UART| Communication with nextion module|
+|SPI| Communication with temperature module|
+|GPIO| System start/stop button and indication LEDs|
+
+As can be seen, the system has two inputs, a button that starts and stops the execution of the application at any time and a MAX6675 module that indicates the instantaneous temperature and the connection status of the transducer, which for this specific case is a thermocouple. type k.
+
+As for the system outputs, it has a 3.2-inch NEXTION screen that communicates via UART protocol and three LEDs used to indicate system activity, the connection status of the thermocouple and a temperature alert when a predefined threshold is exceeded.
