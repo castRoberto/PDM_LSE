@@ -163,9 +163,9 @@ bool_t BSP_NM_ConfigureDisplay (void) {
 
 	displayUartHandler.Instance = NEXTION_UART_DEV;
 	displayUartHandler.Init.BaudRate = NEXTION_UART_BAUDRATE;
-	displayUartHandler.Init.WordLength = UART_WORDLENGTH_8B;
-	displayUartHandler.Init.StopBits = UART_STOPBITS_1;
-	displayUartHandler.Init.Parity = UART_PARITY_NONE;
+	displayUartHandler.Init.WordLength = NEXTION_UART_WORD_LEN;
+	displayUartHandler.Init.StopBits = NEXTION_UART_STOP_BITS;
+	displayUartHandler.Init.Parity = NEXTION_UART_PARITY;
 	displayUartHandler.Init.Mode = UART_MODE_TX_RX;
 	displayUartHandler.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	displayUartHandler.Init.OverSampling = UART_OVERSAMPLING_16;
