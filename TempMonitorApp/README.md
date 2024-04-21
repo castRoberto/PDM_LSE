@@ -29,7 +29,7 @@ As for the system outputs, it has a 3.2-inch NEXTION screen that communicates vi
 The business logic of this system is governed by the main finite state machine shown in Figure 2.
 
 <img src="https://raw.githubusercontent.com/castRoberto/PDM_LSE/main/TempMonitorApp/doc/FiniteStatesMachine.png">
-Figure 2: Main Finite State Machine of system
+Figure 2: Main Finite State Machine of system.
 
 ## Software Architecture
 
@@ -37,3 +37,13 @@ The project was structured following a layered architecture. From the main syste
 
 <img src="https://raw.githubusercontent.com/castRoberto/PDM_LSE/main/TempMonitorApp/doc/SoftwareArchitecture.png">
 Figure 3: Software architecture
+
+## Communication protocols
+
+To demonstrate the correct operation of the communication protocols, figures 4 and 5 are added, which contain the activity diagrams on the SPI and UART ports respectively.
+
+<img src="https://raw.githubusercontent.com/castRoberto/PDM_LSE/main/TempMonitorApp/doc/SPI.png">
+Figura 4: SPI communication of the temperature module.
+
+<img src="https://raw.githubusercontent.com/castRoberto/PDM_LSE/main/TempMonitorApp/doc/UART.png">
+Figura 5: UART communication of nextion display.
