@@ -10,4 +10,4 @@ Roberto Enrique Castro Beltran
 
 This project consists of a layered system of collecting temperature data and displaying it on a graphic screen. The block diagram in Figure 1 shows the different components that make it up.
 
-<img src="/doc/BlockDiagram.png">
+<img src="https://raw.githubusercontent.com/castRoberto/PDM_LSE/main/TempMonitorApp/doc/BlockDiagram.png">
